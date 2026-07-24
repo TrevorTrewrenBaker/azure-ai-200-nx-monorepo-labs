@@ -1,0 +1,14 @@
+@import "tailwindcss"; 
+@import '../../../../libs/shared/ui-design-system/src/styles/global.css';
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+
+
+
+

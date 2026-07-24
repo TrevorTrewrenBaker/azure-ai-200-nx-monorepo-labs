@@ -1,7 +1,10 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "namedInputs": {
-    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "default": [
+      "{projectRoot}/**/*",
+      "sharedGlobals"
+    ],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -62,9 +65,82 @@
     }
   ],
   "analytics": false,
+  "enforceModuleBoundaries": {
+    "enforce": true,
+    "allowCircularDependencies": false,
+    "rules": [
+      {
+        "name": "shared-types cannot depend on anything",
+        "selector": "scope:shared-types",
+        "depConstraints": [
+          {
+            "tag": "scope:shared-types",
+            "onlyDependOnLibsWithTags": [
+              "type:shared"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "shared-utils cannot depend on services or ui",
+        "selector": "scope:shared-utils",
+        "depConstraints": [
+          {
+            "tag": "scope:shared-utils",
+            "onlyDependOnLibsWithTags": [
+              "type:shared",
+              "scope:shared-types"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "shared-services cannot depend on UI",
+        "selector": "scope:shared-services",
+        "depConstraints": [
+          {
+            "tag": "scope:shared-services",
+            "onlyDependOnLibsWithTags": [
+              "type:shared",
+              "scope:shared-types",
+              "scope:shared-utils"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "shared-ui can depend on everything shared",
+        "selector": "scope:shared-ui",
+        "depConstraints": [
+          {
+            "tag": "scope:shared-ui",
+            "onlyDependOnLibsWithTags": [
+              "type:shared"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Apps can depend on everything",
+        "selector": "type:app",
+        "depConstraints": [
+          {
+            "tag": "type:app",
+            "onlyDependOnLibsWithTags": [
+              "type:shared",
+              "type:app",
+              "scope:*"
+            ]
+          }
+        ]
+      }
+    ]
+  },
   "targetDefaults": {
     "test": {
-      "dependsOn": ["^build"]
+      "dependsOn": [
+        "^build"
+      ]
     }
   }
 }

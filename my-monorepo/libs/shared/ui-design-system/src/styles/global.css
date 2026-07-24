@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+/* 1. Base Styles (Resets, Fonts, CSS Variables) */
+@layer base {
+  :root {
+    --color-primary: 59 130 246;
+    --color-secondary: 100 116 139;
+    --font-sans: 'Inter', system-ui, sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+  }
+
+  body {
+    @apply antialiased;
+  }
+}
+
+/* 2. Component Classes (If you aren't using React components for everything) */
+@layer components {
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors;
+  }
+  
+  .card {
+    @apply bg-white rounded-lg shadow p-6;
+  }
+}
+
+/* 3. Utility Classes (If you have custom utilities not in Tailwind) */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
