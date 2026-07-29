@@ -17,4 +17,8 @@ export default {
     },
   },
   plugins: [],
+  // INDUSTRY STANDARD FIX: Disable Tailwind's aggressive reset
+  corePlugins: {
+    preflight: false, 
+  },
 } satisfies Config;

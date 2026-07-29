@@ -1,7 +1,9 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from '@tailwindcss/vite';
+// 🔥 1. Import the Vuetify plugin
+import vuetify from 'vite-plugin-vuetify';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -14,7 +16,20 @@ export default defineConfig(() => ({
     port: 4300,
     host: 'localhost',
   },
-  plugins: [vue(), tailwindcss()],
+  // 🔥 2. Add vuetify() to the plugins array
+  // Note: Order matters! vuetify() should usually come before vue() or alongside it.
+  plugins: [vue(), tailwindcss(), vuetify({ autoImport: true })],
+  
+  // 🔥 3. Ensure Vuetify styles are processed correctly
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // This allows you to use @use 'vuetify/settings' in your SCSS files
+        additionalData: `@use 'vuetify/settings' as *;`,
+      },
+    },
+  },
+
   // Uncomment this if you are using workers.
   // worker: {
   //  plugins: [],
