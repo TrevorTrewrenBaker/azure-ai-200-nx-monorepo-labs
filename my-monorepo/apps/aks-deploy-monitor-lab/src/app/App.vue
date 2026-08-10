@@ -1,73 +1,85 @@
+<!-- apps/aks-deploy-monitor-lab/src/app/App.vue -->
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import { computed, onMounted, watch } from 'vue';
-import { useTheme } from 'vuetify';
+import { computed, onMounted, watch, ref } from 'vue';
+import { useRoute } from 'vue-router';
 
-const theme = useTheme();
-const isDark = computed(() => theme.global.current.value.dark);
+const route = useRoute();
+const isDark = ref(false);
 
 const toggleTheme = () => {
-  if (isDark.value) {
-    theme.global.name.value = 'azure-light';
-  } else {
-    theme.global.name.value = 'azure-dark';
-  }
+  isDark.value = !isDark.value;
 };
 
-// FIX: Use (window as any) to bypass TypeScript checks
-onMounted(() => {
+// Keep <html> class in sync with isDark
+watch(isDark, (dark) => {
+  if (typeof document !== 'undefined') {
+    document.documentElement.classList.toggle('dark', dark);
+  }
   if (typeof window !== 'undefined') {
-    const savedTheme = (window as any).localStorage.getItem('app-theme');
-    if (savedTheme && ['azure-light', 'azure-dark'].includes(savedTheme)) {
-      theme.global.name.value = savedTheme;
-    } else if ((window as any).matchMedia('(prefers-color-scheme: dark)').matches) {
-      theme.global.name.value = 'azure-dark';
-    }
+    window.localStorage.setItem('app-theme', dark ? 'dark' : 'light');
   }
 });
 
-watch(theme.global.name, (newTheme) => {
+onMounted(() => {
   if (typeof window !== 'undefined') {
-    (window as any).localStorage.setItem('app-theme', newTheme);
+    const savedTheme = window.localStorage.getItem('app-theme');
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      isDark.value = savedTheme === 'dark';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      isDark.value = true;
+    }
+    document.documentElement.classList.toggle('dark', isDark.value);
   }
 });
 
 const links = [
   { text: 'Home', to: '/' },
-  { text: 'About', to: '/about' },
+  { text: 'Deploy', to: '/deploy' },
+  { text: 'Configure', to: '/configure' },
+  { text: 'Monitor', to: '/monitor' },
   { text: 'Dictionary', to: '/dictionary' },
 ];
+
+const isActive = (to: string) => computed(() => route.path === to);
 </script>
 
 <template>
-  <v-app>
-    <v-app-bar color="primary" density="compact">
-      <v-app-bar-title>Azure AI Lab Monitor</v-app-bar-title>
-      <template #append>
-        <v-btn icon @click="toggleTheme">
-          <v-icon>{{ isDark ? 'mdi-weather-night' : 'mdi-weather-sunny' }}</v-icon>
-        </v-btn>
-      </template>
-    </v-app-bar>
+  <div class="min-h-screen bg-background text-onBackground">
+    <!-- App bar -->
+    <header class="flex items-center h-14 px-4 bg-primary text-onPrimary shadow">
+      <span class="font-bold text-lg whitespace-nowrap">
+        AKS Deploy Monitor Lab
+      </span>
 
-    <v-main>
-      <v-container>
-        <nav class="d-flex gap-4 mb-4">
-          <RouterLink 
-            v-for="link in links" 
-            :key="link.to" 
-            :to="link.to"
-            class="text-decoration-none"
-          >
-            {{ link.text }}
-          </RouterLink>
-        </nav>
+      <nav class="flex ml-8 gap-1 overflow-x-auto">
+        <RouterLink
+          v-for="link in links"
+          :key="link.to"
+          :to="link.to"
+          class="px-3 py-2 text-sm rounded-md transition-colors hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/50"
+          :class="{ 'bg-white/15 font-semibold': route.path === link.to }"
+        >
+          {{ link.text }}
+        </RouterLink>
+      </nav>
 
-        <!-- This is where your routed views will appear -->
+      <button
+        type="button"
+        class="ml-auto px-3 py-1.5 text-sm rounded-md border border-white/30 hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50"
+        @click="toggleTheme"
+      >
+        {{ isDark ? 'Light mode' : 'Dark mode' }}
+      </button>
+    </header>
+
+    <!-- Main content -->
+    <main class="bg-background">
+      <div class="p-6" style="min-height: calc(100vh - 56px);">
         <RouterView />
-      </v-container>
-    </v-main>
-  </v-app>
+      </div>
+    </main>
+  </div>
 </template>
 
 <style scoped>

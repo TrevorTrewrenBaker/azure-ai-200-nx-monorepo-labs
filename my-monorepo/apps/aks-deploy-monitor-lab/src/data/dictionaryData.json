@@ -7,7 +7,7 @@
   {
     "id": 2,
     "title": "Pods",
-    "description": "Deep dive into reactive state, composables, and TypeScript integration."
+    "description": "The smallest possible unit in kubernetes"
   },
   {
     "id": 3,

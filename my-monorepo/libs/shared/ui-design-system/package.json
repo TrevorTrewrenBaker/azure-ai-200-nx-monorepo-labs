@@ -15,7 +15,15 @@
     }
   },
   "peerDependencies": {
-    "vuetify": "^3.0.0",
-    "vue": "^3.0.0"
+    "vue": "^3.5.39"
+  },
+  "allowScripts": {
+    "nx": true,
+    "esbuild": true,
+    "vite": true,
+    "vue": true,
+    "postcss": true,
+    "tailwindcss": true,
+    "typescript": true
   }
 }

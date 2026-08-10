@@ -2,8 +2,6 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
-// 🔥 1. Import the Vuetify plugin
-import vuetify from 'vite-plugin-vuetify';
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -18,7 +16,7 @@ export default defineConfig(() => ({
   },
   // 🔥 2. Add vuetify() to the plugins array
   // Note: Order matters! vuetify() should usually come before vue() or alongside it.
-  plugins: [vue(), tailwindcss(), vuetify({ autoImport: true })],
+  plugins: [vue(), tailwindcss()],
   
   // 🔥 3. Ensure Vuetify styles are processed correctly
   css: {
