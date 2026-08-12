@@ -2,7 +2,7 @@
   <main class="bg-background">
     <div class="max-w-7xl mx-auto p-6">
 
-      <PageHeader
+  <PageHeader
         title="Azure Kubernetes Service Lab"
         subtitle="Learn Kubernetes terminology, deployment, configuration, and monitoring."
       />

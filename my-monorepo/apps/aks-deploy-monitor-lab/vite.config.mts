@@ -14,8 +14,6 @@ export default defineConfig(() => ({
     port: 4300,
     host: 'localhost',
   },
-  // 🔥 2. Add vuetify() to the plugins array
-  // Note: Order matters! vuetify() should usually come before vue() or alongside it.
   plugins: [vue(), tailwindcss()],
   
   // 🔥 3. Ensure Vuetify styles are processed correctly

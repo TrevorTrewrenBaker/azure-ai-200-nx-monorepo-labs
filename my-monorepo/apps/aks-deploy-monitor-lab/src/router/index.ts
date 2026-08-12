@@ -4,6 +4,10 @@ import Dictionary  from '../views/Dictionary.vue';
 import Monitor  from '../views/Monitor.vue';
 import Deploy from '../views/Deploy.vue';
 import Configure from '../views/Configure.vue';
+import CoreConcepts from '../views/CoreConcepts.vue';
+import Security from '../views/Security.vue';
+import AKS from '../views/AKS.vue';
+
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +36,21 @@ const router = createRouter({
       path: '/dictionary',
       name: 'dictionary',
       component: Dictionary,
+    },
+    {
+      path: '/coreconcepts',
+      name: 'Core Concepts',
+      component: CoreConcepts,
+    },
+    {
+      path: '/security',
+      name: 'Security',
+      component: Security,
+    },
+    {
+      path: '/aks',
+      name: 'AKS',
+      component: AKS,
     },
   ],
 });

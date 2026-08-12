@@ -35,6 +35,9 @@ onMounted(() => {
 
 const links = [
   { text: 'Home', to: '/' },
+  { text: 'Core Concepts', to: "/coreconcepts"},
+  { text: 'Security', to: "/security"},
+  { text: 'AKS', to: "/aks"},
   { text: 'Deploy', to: '/deploy' },
   { text: 'Configure', to: '/configure' },
   { text: 'Monitor', to: '/monitor' },

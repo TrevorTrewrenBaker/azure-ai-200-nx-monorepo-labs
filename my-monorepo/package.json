@@ -70,17 +70,19 @@
     "clean:dist": "powershell -Command \"Get-ChildItem -Path libs,apps -Recurse -Filter dist -Directory | Remove-Item -Recurse -Force\"",
     "clean:modules": "powershell -Command \"Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue\"",
     "clean:lockfile": "powershell -Command \"Remove-Item -Force package-lock.json -ErrorAction SilentlyContinue\"",
-    "install:legacy": "npm install --legacy-peer-deps",
-    "reset": "nx reset",
-    "build:all": "nx run-many --target=build --all",
-    "graph": "nx graph",
-    "affected:build": "nx affected --target=build",
+    "scripts:approve": "npm approve-scripts --allow-scripts-pending --loglevel verbose",
+    "install:normal": "npm install --loglevel verbose",
+    "install:legacy": "npm install --legacy-peer-deps --loglevel verbose",
+    "reset": "nx reset --verbose",
+    "build:all": "nx run-many --target=build --all --verbose",
+    "graph": "nx graph --verbose",
+    "affected:build": "nx affected --target=build --verbose",
     "affected:test": "nx affected --target=test",
     "lint:all": "nx run-many --target=lint --all",
     "test:all": "nx run-many --target=test --all",
-    "list:projects": "nx show projects",
-    "check:outdated": "npm outdated",
-    "check:deps:unused": "npx depcheck",
-    "serve:aks": "nx serve aks-deploy-monitor-lab"
+    "list:projects": "nx show projects --verbose",
+    "check:outdated": "npm outdated --loglevel verbose",
+    "check:deps:unused": "npx depcheck --verbose",
+    "serve:aks": "nx serve aks-deploy-monitor-lab --verbose"
   }
 }
