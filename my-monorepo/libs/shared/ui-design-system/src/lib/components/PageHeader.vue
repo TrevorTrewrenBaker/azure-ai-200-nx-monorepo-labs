@@ -1,19 +1,17 @@
-<!-- libs/shared/ui-design-system/src/lib/components/PageHeader.vue -->
 <template>
   <header class="p-6 mb-8 rounded-lg shadow-md bg-primary text-on-primary">
-    <div class="flex items-center justify-between">
+    <div class="flex items-center justify-between gap-4">
       <div>
         <h1 class="text-2xl font-bold md:text-3xl text-on-primary">
           <slot name="title">{{ title }}</slot>
         </h1>
-        <p
-          v-if="$slots.subtitle || subtitle"
-          class="mt-2 text-sm md:text-base text-onPrimary opacity-85"
-        >
+        <p class="mt-2 text-sm md:text-base text-on-primary opacity-95">
           <slot name="subtitle">{{ subtitle }}</slot>
         </p>
       </div>
-      <div v-if="$slots.actions" class="flex gap-2">
+
+      <!-- optional right-side content: badge, icon, "last updated", etc. -->
+      <div v-if="$slots.actions" class="shrink-0">
         <slot name="actions" />
       </div>
     </div>
