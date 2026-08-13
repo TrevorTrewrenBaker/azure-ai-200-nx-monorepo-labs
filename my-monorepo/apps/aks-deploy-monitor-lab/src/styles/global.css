@@ -2,8 +2,6 @@
 
 /* ============================================
    TAILWIND v4 THEME CONFIG
-   Maps Tailwind utility names (bg-primary, text-onSurface, etc.)
-   to the CSS variables defined below in :root / .dark
    ============================================ */
 @theme {
   --color-primary: var(--color-primary);
@@ -32,101 +30,309 @@
   --font-sans: 'Inter', system-ui, sans-serif;
 }
 
-@layer base {
-  /* ============================================
-     LIGHT THEME (default)
-     ============================================ */
-  :root {
-    --color-primary: #0078D4;
-    --color-on-primary: #FFFFFF;
-    --color-secondary: #00BCF4;
-    --color-on-secondary: #FFFFFF;
-    --color-accent: #8F4CDB;
-    --color-on-accent: #FFFFFF;
-    --color-error: #D13438;
-    --color-on-error: #FFFFFF;
-    --color-info: #0067B4;
-    --color-on-info: #FFFFFF;
-    --color-success: #107C10;
-    --color-on-success: #FFFFFF;
-    --color-warning: #FFC107;
-    --color-on-warning: #000000;
-    --color-background: #F3F2F1;
-    --color-on-background: #201F1E;
-    --color-surface: #FFFFFF;
-    --color-on-surface: #201F1E;
-    --color-surface-variant: #E1DFDD;
-    --color-on-surface-variant: #49454F;
-    --color-surface-container: #F9F9F9;
-    --color-surface-container-high: #F3F2F1;
-  }
+/* ============================================
+   LIGHT THEME (default)
+   ============================================ */
+:root {
+  /* ----- Brand Colors ----- */
+  --color-primary: #0078D4;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #00BCF4;
+  --color-on-secondary: #FFFFFF;
+  --color-accent: #8F4CDB;
+  --color-on-accent: #FFFFFF;
 
-  /* ============================================
-     DARK THEME
-     Applied by adding class="dark" to <html> or <body>
-     ============================================ */
-  .dark {
-    --color-primary: #0078D4;
-    --color-on-primary: #FFFFFF;
-    --color-secondary: #00BCF4;
-    --color-on-secondary: #000000;
-    --color-accent: #D13438;
-    --color-on-accent: #000000;
-    --color-error: #F14C4C;
-    --color-on-error: #000000;
-    --color-info: #00B2E8;
-    --color-on-info: #000000;
-    --color-success: #30D158;
-    --color-on-success: #000000;
-    --color-warning: #FFD60A;
-    --color-on-warning: #000000;
-    --color-background: #201F1E;
-    --color-on-background: #E1DFDD;
-    --color-surface: #1C1B1F;
-    --color-on-surface: #FFFFFF;
-    --color-surface-variant: #49454F;
-    --color-on-surface-variant: #E1DFDD;
-    --color-surface-container: #2D2D2D;
-    --color-surface-container-high: #383838;
-  }
+  /* ----- Semantic Colors ----- */
+  --color-error: #D13438;
+  --color-on-error: #FFFFFF;
+  --color-info: #0067B4;
+  --color-on-info: #FFFFFF;
+  --color-success: #107C10;
+  --color-on-success: #FFFFFF;
+  --color-warning: #FFC107;
+  --color-on-warning: #000000;
 
-  html {
-    font-family: var(--font-sans);
-  }
+  /* ----- Surface Colors (Tonal Elevation) ----- */
+  --color-background: #F3F2F1;
+  --color-on-background: #201F1E;
+  --color-surface: #FFFFFF;
+  --color-on-surface: #201F1E;
+  --color-surface-variant: #E1DFDD;
+  --color-on-surface-variant: #49454F;
+  --color-surface-container-low: #F9F9F9;      /* Level 0-1 */
+  --color-surface-container: #F3F2F1;          /* Level 1-2 */
+  --color-surface-container-high: #EDEBE9;      /* Level 2-3 */
+  --color-surface-container-highest: #E1DFDD;   /* Level 4-5 */
 
-  body {
-    @apply antialiased;
-  }
+  /* ==========================================
+     MATERIAL 3 ELEVATION SYSTEM
+     Based on official M3 elevation tokens
+     ========================================== */
+  
+  /* ----- Shadow Color (M3 standard) ----- */
+  --md-sys-color-shadow: #000000;
+  
+  /* ----- Elevation 0: No elevation ----- */
+  --elevation-0: none;
+  
+  /* ----- Elevation 1: 1dp ----- */
+  --elevation-1: 
+    0 1px 2px rgba(0, 0, 0, 0.30),
+    0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  
+  /* ----- Elevation 2: 3dp ----- */
+  --elevation-2: 
+    0 1px 2px rgba(0, 0, 0, 0.30),
+    0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  
+  /* ----- Elevation 3: 6dp ----- */
+  --elevation-3: 
+    0 4px 8px 3px rgba(0, 0, 0, 0.15),
+    0 1px 3px rgba(0, 0, 0, 0.30);
+  
+  /* ----- Elevation 4: 8dp ----- */
+  --elevation-4: 
+    0 6px 10px 4px rgba(0, 0, 0, 0.15),
+    0 2px 3px rgba(0, 0, 0, 0.30);
+  
+  /* ----- Elevation 5: 12dp ----- */
+  --elevation-5: 
+    0 8px 12px 6px rgba(0, 0, 0, 0.15),
+    0 4px 4px rgba(0, 0, 0, 0.30);
 }
 
-@layer components {
-  .btn-primary {
-    @apply bg-primary text-onPrimary px-4 py-2 rounded-md transition-colors;
-    @apply hover:opacity-90;
-    @apply focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2;
-  }
+/* ============================================
+   DARK THEME
+   Applied by adding class="dark" to <html>
+   ============================================ */
+.dark {
+  /* ----- Brand Colors (unchanged) ----- */
+  --color-primary: #0078D4;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #00BCF4;
+  --color-on-secondary: #000000;
+  --color-accent: #D13438;
+  --color-on-accent: #000000;
 
-  .card {
-    @apply bg-surface text-onSurface rounded-lg shadow p-6;
-    @apply focus:outline-none focus:ring-4 focus:ring-primary/50 focus:ring-offset-2;
-  }
+  /* ----- Semantic Colors ----- */
+  --color-error: #F14C4C;
+  --color-on-error: #000000;
+  --color-info: #00B2E8;
+  --color-on-info: #000000;
+  --color-success: #30D158;
+  --color-on-success: #000000;
+  --color-warning: #FFD60A;
+  --color-on-warning: #000000;
 
-  .card.hover-lift {
-    transition-property: transform, box-shadow;
-    transition-duration: 300ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-  }
+  /* ----- Surface Colors (Tonal Elevation) ----- */
+  --color-background: #201F1E;
+  --color-on-background: #E1DFDD;
+  --color-surface: #1C1B1F;
+  --color-on-surface: #FFFFFF;
+  --color-surface-variant: #49454F;
+  --color-on-surface-variant: #E1DFDD;
+  --color-surface-container-low: #2D2D2D;      /* Level 0-1 */
+  --color-surface-container: #383838;           /* Level 1-2 */
+  --color-surface-container-high: #3D3D3D;      /* Level 2-3 */
+  --color-surface-container-highest: #424242;   /* Level 4-5 */
 
-  .card.hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  }
+  /* ==========================================
+     MATERIAL 3 ELEVATION SYSTEM - DARK
+     Lighter shadows for dark surfaces
+     ========================================== */
+  
+  /* ----- Shadow Color (M3 standard) ----- */
+  --md-sys-color-shadow: #000000;
+  
+  /* ----- Elevation 0 ----- */
+  --elevation-0: none;
+  
+  /* ----- Elevation 1: 1dp (lighter in dark mode) ----- */
+  --elevation-1: 
+    0 1px 3px rgba(0, 0, 0, 0.40),
+    0 1px 2px rgba(0, 0, 0, 0.30);
+  
+  /* ----- Elevation 2: 3dp ----- */
+  --elevation-2: 
+    0 1px 2px rgba(0, 0, 0, 0.40),
+    0 2px 6px 2px rgba(0, 0, 0, 0.30);
+  
+  /* ----- Elevation 3: 6dp ----- */
+  --elevation-3: 
+    0 4px 8px 3px rgba(0, 0, 0, 0.30),
+    0 1px 3px rgba(0, 0, 0, 0.40);
+  
+  /* ----- Elevation 4: 8dp ----- */
+  --elevation-4: 
+    0 6px 10px 4px rgba(0, 0, 0, 0.30),
+    0 2px 3px rgba(0, 0, 0, 0.40);
+  
+  /* ----- Elevation 5: 12dp ----- */
+  --elevation-5: 
+    0 8px 12px 6px rgba(0, 0, 0, 0.30),
+    0 4px 4px rgba(0, 0, 0, 0.40);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   COMPONENT STYLES
+   ============================================ */
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  transition: opacity 0.2s;
+  cursor: pointer;
+  border: none;
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ==========================================
+   MATERIAL 3 CARD COMPONENT
+   Uses tonal elevation + shadows
+   ========================================== */
+.card {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  /* ✅ Uses M3 elevation 2 */
+  box-shadow: var(--elevation-2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/* ✅ Hover state with elevation increase */
+.card.hover-lift {
+  box-shadow: var(--elevation-2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+}
+
+.card.hover-lift:hover {
+  transform: translateY(-4px);
+  /* ✅ Elevation 3 on hover */
+  box-shadow: var(--elevation-3);
+}
+
+/* ==========================================
+   TONAL ELEVATION (Surface Containers)
+   Material 3 uses color, not shadows, for most surfaces
+   ========================================== */
+.surface-low {
+  background-color: var(--color-surface-container-low);
+  color: var(--color-on-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.surface-default {
+  background-color: var(--color-surface-container);
+  color: var(--color-on-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.surface-high {
+  background-color: var(--color-surface-container-high);
+  color: var(--color-on-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+.surface-highest {
+  background-color: var(--color-surface-container-highest);
+  color: var(--color-on-surface);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+/* ==========================================
+   ELEVATION UTILITY CLASSES
+   Apply these to any component
+   ========================================== */
+.elevation-0 {
+  box-shadow: var(--elevation-0);
+}
+
+.elevation-1 {
+  box-shadow: var(--elevation-1);
+}
+
+.elevation-2 {
+  box-shadow: var(--elevation-2);
+}
+
+.elevation-3 {
+  box-shadow: var(--elevation-3);
+}
+
+.elevation-4 {
+  box-shadow: var(--elevation-4);
+}
+
+.elevation-5 {
+  box-shadow: var(--elevation-5);
+}
+
+/* ==========================================
+   M3 FLOATING ACTION BUTTON (FAB)
+   Shows elevation 4
+   ========================================== */
+.fab {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--elevation-4);
+  transition: box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.fab:hover {
+  box-shadow: var(--elevation-5);
+}
+
+/* ==========================================
+   M3 DROPDOWN MENU
+   Shows elevation 3
+   ========================================== */
+.dropdown-menu {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  box-shadow: var(--elevation-3);
+}
+
+/* ==========================================
+   UTILITY STYLES
+   ========================================== */
+.text-balance {
+  text-wrap: balance;
 }
