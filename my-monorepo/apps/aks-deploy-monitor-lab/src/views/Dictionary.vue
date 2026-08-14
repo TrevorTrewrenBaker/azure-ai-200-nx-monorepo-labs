@@ -14,7 +14,7 @@
       Azure Kubernetes Service Module Dictionary
     </h1>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden">
+    <div class="p-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 overflow-hidden">
       <!-- 4. Use the Component in the Template -->
       <DictionaryCard 
         v-for="item in items" 

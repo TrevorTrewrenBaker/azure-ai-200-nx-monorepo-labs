@@ -66,39 +66,37 @@
 
   /* ==========================================
      MATERIAL 3 ELEVATION SYSTEM
-     Based on official M3 elevation tokens
+     Shadow color is tied to --color-on-background
+     so shadows stay tonally consistent with content
      ========================================== */
-  
-  /* ----- Shadow Color (M3 standard) ----- */
-  --md-sys-color-shadow: #000000;
-  
-  /* ----- Elevation 0: No elevation ----- */
+
+  /* ----- Shadow Color (derived from on-background) -----
+     on-background is #201F1E in light mode — already a
+     near-black, so it's a safe, tonally-matched shadow tint. */
+  --md-sys-color-shadow: var(--color-on-background);
+  --shadow-color-rgb: 32, 31, 30; /* RGB of #201F1E, precomputed for rgba() use */
+
   --elevation-0: none;
-  
-  /* ----- Elevation 1: 1dp ----- */
-  --elevation-1: 
-    0 1px 2px rgba(0, 0, 0, 0.30),
-    0 1px 3px 1px rgba(0, 0, 0, 0.15);
-  
-  /* ----- Elevation 2: 3dp ----- */
-  --elevation-2: 
-    0 1px 2px rgba(0, 0, 0, 0.30),
-    0 2px 6px 2px rgba(0, 0, 0, 0.15);
-  
-  /* ----- Elevation 3: 6dp ----- */
-  --elevation-3: 
-    0 4px 8px 3px rgba(0, 0, 0, 0.15),
-    0 1px 3px rgba(0, 0, 0, 0.30);
-  
-  /* ----- Elevation 4: 8dp ----- */
-  --elevation-4: 
-    0 6px 10px 4px rgba(0, 0, 0, 0.15),
-    0 2px 3px rgba(0, 0, 0, 0.30);
-  
-  /* ----- Elevation 5: 12dp ----- */
-  --elevation-5: 
-    0 8px 12px 6px rgba(0, 0, 0, 0.15),
-    0 4px 4px rgba(0, 0, 0, 0.30);
+
+  --elevation-1:
+    0 1px 2px rgba(var(--shadow-color-rgb), 0.30),
+    0 1px 3px 1px rgba(var(--shadow-color-rgb), 0.15);
+
+  --elevation-2:
+    0 1px 2px rgba(var(--shadow-color-rgb), 0.30),
+    0 2px 6px 2px rgba(var(--shadow-color-rgb), 0.15);
+
+  --elevation-3:
+    0 4px 8px 3px rgba(var(--shadow-color-rgb), 0.15),
+    0 1px 3px rgba(var(--shadow-color-rgb), 0.30);
+
+  --elevation-4:
+    0 6px 10px 4px rgba(var(--shadow-color-rgb), 0.15),
+    0 2px 3px rgba(var(--shadow-color-rgb), 0.30);
+
+  --elevation-5:
+    0 8px 12px 6px rgba(var(--shadow-color-rgb), 0.15),
+    0 4px 4px rgba(var(--shadow-color-rgb), 0.30);
 }
 
 /* ============================================
@@ -138,39 +136,33 @@
 
   /* ==========================================
      MATERIAL 3 ELEVATION SYSTEM - DARK
-     Lighter shadows for dark surfaces
+     Intentionally a GLOW here, not a shadow: tinted with
+     on-background (#E1DFDD, near-white) so raised elements
+     appear to emit soft light rather than cast a shadow.
+     Blur/spread is larger and opacity lower than the light-mode
+     shadows, since a glow reads correctly at lower intensity
+     than a shadow does.
      ========================================== */
-  
-  /* ----- Shadow Color (M3 standard) ----- */
-  --md-sys-color-shadow: #000000;
-  
-  /* ----- Elevation 0 ----- */
+
+  --md-sys-color-shadow: var(--color-on-background);
+  --shadow-color-rgb: 225, 223, 221; /* RGB of #E1DFDD */
+
   --elevation-0: none;
-  
-  /* ----- Elevation 1: 1dp (lighter in dark mode) ----- */
-  --elevation-1: 
-    0 1px 3px rgba(0, 0, 0, 0.40),
-    0 1px 2px rgba(0, 0, 0, 0.30);
-  
-  /* ----- Elevation 2: 3dp ----- */
-  --elevation-2: 
-    0 1px 2px rgba(0, 0, 0, 0.40),
-    0 2px 6px 2px rgba(0, 0, 0, 0.30);
-  
-  /* ----- Elevation 3: 6dp ----- */
-  --elevation-3: 
-    0 4px 8px 3px rgba(0, 0, 0, 0.30),
-    0 1px 3px rgba(0, 0, 0, 0.40);
-  
-  /* ----- Elevation 4: 8dp ----- */
-  --elevation-4: 
-    0 6px 10px 4px rgba(0, 0, 0, 0.30),
-    0 2px 3px rgba(0, 0, 0, 0.40);
-  
-  /* ----- Elevation 5: 12dp ----- */
-  --elevation-5: 
-    0 8px 12px 6px rgba(0, 0, 0, 0.30),
-    0 4px 4px rgba(0, 0, 0, 0.40);
+
+  --elevation-1:
+    0 0 4px rgba(var(--shadow-color-rgb), 0.10);
+
+  --elevation-2:
+    0 0 8px rgba(var(--shadow-color-rgb), 0.12);
+
+  --elevation-3:
+    0 0 16px rgba(var(--shadow-color-rgb), 0.14);
+
+  --elevation-4:
+    0 0 24px rgba(var(--shadow-color-rgb), 0.16);
+
+  --elevation-5:
+    0 0 32px rgba(var(--shadow-color-rgb), 0.18);
 }
 
 /* ============================================
@@ -210,19 +202,19 @@ body {
 
 /* ==========================================
    MATERIAL 3 CARD COMPONENT
-   Uses tonal elevation + shadows
+   Uses tonal elevation + shadows tied to on-background,
+   plus a hover scale-up to match your DictionaryCard pattern
    ========================================== */
 .card {
   background-color: var(--color-surface);
   color: var(--color-on-surface);
   border-radius: 0.75rem;
   padding: 1.5rem;
-  /* ✅ Uses M3 elevation 2 */
   box-shadow: var(--elevation-2);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-/* ✅ Hover state with elevation increase */
+/* ✅ Hover state: elevation increase + subtle scale-up */
 .card.hover-lift {
   box-shadow: var(--elevation-2);
   transition: box-shadow 0.3s ease, transform 0.3s ease;
@@ -230,9 +222,27 @@ body {
 }
 
 .card.hover-lift:hover {
-  transform: translateY(-4px);
-  /* ✅ Elevation 3 on hover */
+  transform: translateY(-4px) scale(1.03);
   box-shadow: var(--elevation-3);
+}
+
+/* ==========================================
+   CARD HOVER-SCALE UTILITY
+   Matches the DictionaryCard pattern (shadow-md -> shadow-lg,
+   plus a scale-up instead of/alongside translate-y)
+   Apply as: class="card-hover-scale"
+   ========================================== */
+.card-hover-scale {
+  box-shadow: var(--elevation-2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.card-hover-scale:hover {
+  box-shadow: var(--elevation-3);
+  transform: scale(1.03);
 }
 
 /* ==========================================

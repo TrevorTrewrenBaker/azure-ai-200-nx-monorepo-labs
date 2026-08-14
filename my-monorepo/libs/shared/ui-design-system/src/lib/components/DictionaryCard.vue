@@ -1,6 +1,5 @@
 <template>
-  <div class="h-full w-full rounded-lg overflow-hidden bg-surface shadow-md transition-all 
-          duration-300 hover:shadow-lg hover:-translate-y-1">
+  <div class="card-hover-scale h-full w-full rounded-lg overflow-hidden bg-surface transition-all duration-300">
     <div class="p-6 vertical-align flex-col h-full">
         <h3 class="text-3xl font-bold text-on-surface">
           {{ item.title }}
@@ -17,4 +16,3 @@
   import type { DictionaryEntry } from '@myorg/shared-types';
   defineProps<{ item: DictionaryEntry & { href?: string; route?: string; }; }>();
 </script>
-
