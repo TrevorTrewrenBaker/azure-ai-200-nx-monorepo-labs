@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "AKS",
+    "description": "Stands for Azure Kubernetes Service. It is a managed Kubernetes solution on Azure that simplifies deploying and scaling containerized applications, especially AI workloads like model inference APIs and vector search services, without managing the control plane."
+  },
+  {
+    "id": 2,
+    "title": "Pods",
+    "description": "The smallest possible unit in kubernetes"
+  },
+  {
+    "id": 3,
+    "title": "Deployments",
+    "description": "Managed pod replicas, handling restarts and defining configurations (image, resources, env vars) in YAML."
+  },
+  {
+    "id": 4,
+    "title": "Services",
+    "description": "Provide stable endpoints to access pods, with types like load balancer for external access."
+  },
+  {
+    "id": 5,
+    "title": "Kubectl",
+    "description": "The CLI tool to deploy manifests, check status, view logs, and troubleshoot."
+  },
+  {
+    "id": 6,
+    "title": "FastAPI",
+    "description": "Modern, high-performance web framework used for building RESTful APIs with python."
+  },
+  {
+    "id": 7,
+    "title": "Load Balancer",
+    "description": "Acts as a reserve proxy and traffic cop for an application. It sits between the user client and backend servers, intelligently distributing incoming network traffic to prevent any single server from being overwhelmed, which maximizes speed, capacity utilization, and uptime."
+  },
+  {
+    "id": 8,
+    "title": "Kubernetes Deployment manifest",
+    "description": "YAML file that tells Azure Kubernetes Service (AKS) exactly how to run your containerized application."
+  },
+  {
+    "id": 9,
+    "title": "OOMKilled",
+    "description": "Stands for Out of Memory Killed. This event occurs when the Linux kernel terminates a process to prevent a system-wide crash or freeze when available physical memory and swap space are exhausted."
+  }
+]

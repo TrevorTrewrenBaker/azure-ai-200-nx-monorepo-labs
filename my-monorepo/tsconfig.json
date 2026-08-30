@@ -2,5 +2,24 @@
   "extends": "./tsconfig.base.json",
   "compileOnSave": false,
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./apps/aks-deploy-monitor-lab-e2e"
+    },
+    {
+      "path": "./apps/aks-deploy-monitor-lab"
+    },
+    {
+      "path": "./libs/shared/ui-design-system"
+    },
+    {
+      "path": "./libs/shared/shared-services"
+    },
+    {
+      "path": "./libs/shared/shared-utils"
+    },
+    {
+      "path": "./libs/shared/shared-types"
+    }
+  ]
 }

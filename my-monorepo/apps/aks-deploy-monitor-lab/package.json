@@ -1,0 +1,9 @@
+{
+  "name": "@org/aks-deploy-monitor-lab",
+  "version": "0.0.1",
+  "private": true,
+  "peerDependencies": {
+    "vue": "^3.5.39"
+  }
+}
+
