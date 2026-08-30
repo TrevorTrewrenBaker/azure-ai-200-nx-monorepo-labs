@@ -78,7 +78,7 @@ const isActive = (to: string) => computed(() => route.path === to);
 
     <!-- Main content -->
     <main class="bg-background">
-      <div class="p-6" style="min-height: calc(100vh - 56px);">
+      <div style="min-height: calc(100vh - 56px);">
         <RouterView />
       </div>
     </main>

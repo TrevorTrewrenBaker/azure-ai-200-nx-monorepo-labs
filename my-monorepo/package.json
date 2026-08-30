@@ -30,6 +30,7 @@
     "@vue/test-utils": "^2.4.6",
     "ajv": "^8.0.0",
     "autoprefixer": "^10.5.2",
+    "dotenv-expand": "^1000.0.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-playwright": "^1.6.2",
