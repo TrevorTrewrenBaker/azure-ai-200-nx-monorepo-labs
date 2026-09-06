@@ -1,7 +1,22 @@
-/// <reference types='vitest' />
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
+
+// Custom plugin to handle YAML files as raw strings
+function yamlRawPlugin() {
+  return {
+    name: 'yaml-raw-plugin',
+    enforce: 'pre' as const,
+    transform(code: string, id: string) {
+      if (id.endsWith('.yaml') || id.endsWith('.yml')) {
+        return {
+          code: `export default ${JSON.stringify(code)}`,
+          map: null,
+        };
+      }
+    },
+  };
+}
 
 export default defineConfig(() => ({
   root: import.meta.dirname,
@@ -14,22 +29,22 @@ export default defineConfig(() => ({
     port: 4300,
     host: 'localhost',
   },
-  plugins: [vue(), tailwindcss()],
+  plugins: [
+    vue(), 
+    tailwindcss(),
+    yamlRawPlugin(),
+  ],
   
-  // 🔥 3. Ensure Vuetify styles are processed correctly
   css: {
     preprocessorOptions: {
       scss: {
-        // This allows you to use @use 'vuetify/settings' in your SCSS files
         additionalData: `@use 'vuetify/settings' as *;`,
       },
     },
   },
 
-  // Uncomment this if you are using workers.
-  // worker: {
-  //  plugins: [],
-  // },
+  assetsInclude: ['**/*.yaml', '**/*.yml'],
+
   build: {
     outDir: './dist',
     emptyOutDir: true,

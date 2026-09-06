@@ -2,10 +2,7 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "parallel": 1,
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
       "default",
       "!{projectRoot}/.eslintrc.json",
@@ -76,9 +73,7 @@
         "depConstraints": [
           {
             "tag": "scope:shared-types",
-            "onlyDependOnLibsWithTags": [
-              "type:shared"
-            ]
+            "onlyDependOnLibsWithTags": ["type:shared"]
           }
         ]
       },
@@ -88,10 +83,7 @@
         "depConstraints": [
           {
             "tag": "scope:shared-utils",
-            "onlyDependOnLibsWithTags": [
-              "type:shared",
-              "scope:shared-types"
-            ]
+            "onlyDependOnLibsWithTags": ["type:shared", "scope:shared-types"]
           }
         ]
       },
@@ -115,9 +107,7 @@
         "depConstraints": [
           {
             "tag": "scope:shared-ui",
-            "onlyDependOnLibsWithTags": [
-              "type:shared"
-            ]
+            "onlyDependOnLibsWithTags": ["type:shared"]
           }
         ]
       },
@@ -127,11 +117,7 @@
         "depConstraints": [
           {
             "tag": "type:app",
-            "onlyDependOnLibsWithTags": [
-              "type:shared",
-              "type:app",
-              "scope:*"
-            ]
+            "onlyDependOnLibsWithTags": ["type:shared", "type:app", "scope:*"]
           }
         ]
       }
@@ -139,9 +125,7 @@
   },
   "targetDefaults": {
     "test": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     }
   }
 }

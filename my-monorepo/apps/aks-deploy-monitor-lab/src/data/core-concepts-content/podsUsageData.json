@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Pods that run a single container",
+    "description": "The 'one-container-per-Pod' model is the most common Kubernetes use case; in this case, you can think of a pod as a wrapper around a single container; Kubernetes manages Pods rather than managing the containers directly."
+  },
+  {
+    "id": 2,
+    "title": "Pods that run multiple containers that need to work together",
+    "description": "A Pod can encapsulate an application composed of multiple co-located containers that are tightly coupled and need to share resources. These co-located containers form a single cohesive unit."
+  }
+]

@@ -1,4 +1,3 @@
-
 export interface ContentCardEntry {
   id: number;
   title: string;

@@ -1,4 +1,3 @@
-// This file defines the "Contract"
 export interface DictionaryEntry {
   id: number;
   title: string;

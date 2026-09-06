@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "title": "What is a Pod?",
+    "description": "A group of one or more containers, with shared storage and network resources, and a specification for how to run the containers."
+  },
+  {
+    "id": 2,
+    "title": "What are the smallest deployable units in Kubernetes?",
+    "description": "Pods are the smallest deployable units of computing that you can create and manage in Kubernetes."
+  },
+  {
+    "id": 3,
+    "title": "What types of containers can a Pod contain?",
+    "description": "A Pod can contain application containers, init containers (which run during startup), and ephemeral containers (which can be injected for debugging a running Pod)."
+  },
+  {
+    "id": 4,
+    "title": "Pod concept comparison",
+    "description": "A Pod is similar to a set of containers with shared namespaces and shared filesystem volumes."
+  }
+]
